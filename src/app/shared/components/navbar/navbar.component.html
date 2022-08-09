@@ -1,0 +1,56 @@
+<header class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <div class="container-fluid">
+        <!-- 
+      Cuando usamos la sintaxis: [routerLink]="['segmento-de-ruta']"'
+      Ejemplo: /usuarios/nuevo-usuario => Segmentos: ['usuarios', 'nuevo-usuario']
+      Pero,cuando vamos a navegar por segmentos de ruta, las rutas son relativas
+      a donde esta llamando la ruta.
+      Ejemplo:
+      Si nosotros estamos en la ruta: /home y hacemos clic en un routerLink con ruta ['usuarios', 'nuevo-usuario'], la ruta que se va a activar sera:
+      /home/usuarios/nuevo-usuario .
+
+      Para evitar esto, podemos usar el /
+      Ejemplo: 
+      Si estamos en la misma situacion anterior, pero el routerLink tiene la sintaxis:  ['/usuarios', 'nuevo-usuario'], la ruta que se activa es:
+      /usuarios/nuevo-usuario . 
+      El simbolo / sobreescribe la ruta actual.
+    -->
+        <a
+            [routerLink]="['/']"
+            class="navbar-brand text-white"
+            routerLinkActive="active"
+            >Users App</a
+        >
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a
+                        [routerLink]="['/']"
+                        class="nav-link text-white"
+                        routerLinkActive="active"
+                        >Principal</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a
+                        [routerLink]="['/newuser']"
+                        class="nav-link text-white"
+                        routerLinkActive="active"
+                        >Nuevo usuario</a
+                    >
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
