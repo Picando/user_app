@@ -8,11 +8,11 @@ import { GetAllUsersAPIResponse } from '../interfaces/users.interfaces';
   providedIn: 'root', // El servicio esta disponible en la raíz (en todos los componentes).
 })
 export class UsersService {
-  constructor(private http: HttpClient) {}
+  constructor(private _http: HttpClient) {}
 
   getAllUsers(): Observable<GetAllUsersAPIResponse> {
-    return this.http.get<GetAllUsersAPIResponse>(
-      'https://peticiones.online/users'
+    return this._http.get<GetAllUsersAPIResponse>(
+      'https://peticiones.online/api/users'
     );
   }
 }
