@@ -1,1 +1,91 @@
-<p>add-user works!</p>
+<form class="mt-5" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label for="User_Name" class="form-label">Nombre Usuario</label>
+        <input
+            type="text"
+            [class]="getFirstName?.invalid
+                     && (getFirstName?.touched || getFirstName?.dirty)
+                     ?
+                     'form-control is-invalid':
+                     'form-control'
+                    "
+            id="User_Name"
+            placeholder="John"
+            formControlName="first_name"
+        />
+
+        <small class="invalid-feedback">
+            Campo requerido.
+        </small>
+    </div>
+
+    <div class="mb-3">
+        <label for="User_Last_Name" class="form-label">Apellido Usuario</label>
+        <input
+            [class]="getLastName?.invalid
+                     && (getLastName?.touched || getLastName?.dirty)
+                     ?
+                     'form-control is-invalid':
+                     'form-control'
+                    "
+            type="text"
+            id="User_Last_Name"
+            placeholder="Doe"
+            formControlName="last_name"
+        />
+
+        <small class="invalid-feedback">
+            Campo requerido.
+        </small>
+    </div>
+
+    <div class="mb-3">
+        <label for="User_Email" class="form-label">Email Usuario</label>
+        <input
+            [class]="getEmail?.invalid
+                     && (getEmail?.touched || getEmail?.dirty)
+                     ?
+                     'form-control is-invalid':
+                     'form-control'
+                    "
+            type="email"
+            class="form-control"
+            id="User_Email"
+            placeholder="john@example.com"
+            formControlName="email"
+        />
+
+        <small
+            *ngIf="getEmail?.errors?.['required']"
+            class="invalid-feedback"
+        >
+            Campo requerido.
+        </small>
+        <small
+            *ngIf="getEmail?.errors?.['email']"
+            class="invalid-feedback"
+        >
+            Formato inválido.
+        </small>
+    </div>
+
+    <button
+        class="btn btn-success"
+        type="submit"
+        [disabled]="userForm.invalid || isLoading"
+    >
+        Crear
+    </button>
+
+    <!--
+        <div class="mb-3">
+            <label for="User_Image" class="form-label">Imagen Usuario</label>
+            <input
+                type="text"
+                class="form-control"
+                id="User_Image"
+                placeholder="John"
+            />
+        </div>
+    -->
+</form>
