@@ -14,9 +14,11 @@ import {
 export class UsersService {
   constructor(private http: HttpClient) {} // injeccion de dependecia para poder tener acceso al codigo que nos permita realizar una peticion... no voy a usar el fetch. usaré el modulo http client.
 
-  getAll(): Observable<GetAllUsersAPIResponse> {
+  getAll(page: number): Observable<GetAllUsersAPIResponse> {
     // es un método.
-    return this.http.get<GetAllUsersAPIResponse>(`${environment.apiUrl}/users`);
+    return this.http.get<GetAllUsersAPIResponse>(
+      `${environment.apiUrl}/users?page=${page}`
+    );
   }
 
   create(payload: CreateUserPayload): Observable<User> {

@@ -16,6 +16,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
 
   userList: Array<User> = [];
+  pagesList: Array<number> = [];
+  page: number = 1;
 
   constructor(private _usersService: UsersService) {}
 
@@ -27,10 +29,18 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   private getAllUsers(): void {
     this._usersService
-      .getAll()
+      .getAll(this.page)
       .pipe(takeUntil(this.destroy$))
       .subscribe((res: GetAllUsersAPIResponse) => {
         this.userList = res.data;
+        this.pagesList = this.createPaginationArray(res.total_pages);
       });
+  }
+  private createPaginationArray(totalPages: number): Array<number> {
+    let array = [];
+    for (let i = 0; i < totalPages; i++) {
+      array.push(i + 1);
+    }
+    return array;
   }
 }

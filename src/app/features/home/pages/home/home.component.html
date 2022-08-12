@@ -3,3 +3,24 @@
     <user-card [user]="null"></user-card>
   </div>
 </div>
+
+<div class="row mb-5">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination d-flex align-items-center justify-content-center">
+      <!--  <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li> -->
+      <li *ngFor="let page of pagesList" class="page-item">
+        <button class="page-link">{{ page }}</button>
+      </li>
+
+      <!--  <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li -->>
+    </ul>
+  </nav>
+</div>
