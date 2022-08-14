@@ -1,1 +1,60 @@
-<p>user-update works!</p>
+<form class="mt-5" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <h2>ACTUALIZAR USUARIO</h2>
+  <div class="mb-3">
+    <label for="User_name" class="form-label">Nombre usuario</label>
+    <input
+      type="text"
+      [class]="
+        isInvalidFirstName() ? 'form-control is-invalid' : 'form-control'
+      "
+      id="User_name"
+      placeholder="Jhon"
+      formControlName="first_name"
+    />
+    <small class="invalid-feedback"> Campo requerido </small>
+  </div>
+  <div class="mb-3">
+    <label for="User_Lastname" class="form-label">Apellido usuario</label>
+    <input
+      type="text"
+      [class]="isInvalidLastName() ? 'form-control is-invalid' : 'form-control'"
+      id="User_Lastname"
+      placeholder="Doe"
+      formControlName="last_name"
+    />
+    <small class="invalid-feedback"> Campo requerido </small>
+  </div>
+  <div class="mb-3">
+    <label for="User_name" class="form-label">Email Usuario</label>
+    <input
+      type="email"
+      [class]="isInvalidEmail ? 'form-control is-invalid' : 'form-control'"
+      id="email"
+      placeholder="jhon@example.com"
+      formControlName="email"
+    />
+    <small *ngIf="getEmail?.errors?.['required']" class="invalid-feedback">
+      Campo requerido
+    </small>
+    <small *ngIf="getEmail?.errors?.['email']" class="invalid-feedback">
+      Formato Inválido
+    </small>
+  </div>
+
+  <button
+    class="btn btn-success"
+    type="submit"
+    [disabled]="userForm.invalid || isLoading"
+  >
+    Actualizar
+  </button>
+  <!-- <div class="mb-3">
+      <label for="User_image" class="form-label">Image Usuario</label>
+      <input
+        type="file"
+        class="form-control"
+        id="User_image"
+        placeholder="Jhon"
+      />
+    </div> -->
+</form>

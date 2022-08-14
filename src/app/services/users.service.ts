@@ -12,6 +12,7 @@ import {
   providedIn: 'root', // El servicio esta disponible en todos los componentes ( en la raiz)
 })
 export class UsersService {
+  user: any;
   constructor(private http: HttpClient) {} // injeccion de dependecia para poder tener acceso al codigo que me permita realizar una peticion... no voy a usar el fetch. usaré el modulo http client.
 
   /* Obtiene la información del usuario con el Id especificado. */

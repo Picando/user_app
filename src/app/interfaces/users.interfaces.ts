@@ -21,3 +21,9 @@ export interface CreateUserPayload {
   email: string;
 }
 
+export interface UpdatePayload {
+  first_name: string;
+  last_name: string;
+  email: string;
+  username: string;
+}
