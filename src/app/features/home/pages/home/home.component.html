@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col" *ngFor="let user of userList">
-    <user-card [user]="null"></user-card>
+    <user-card [user]="user"></user-card>
   </div>
 </div>
 
@@ -13,7 +13,9 @@
         </a>
       </li> -->
       <li *ngFor="let page of pagesList" class="page-item">
-        <button class="page-link">{{ page }}</button>
+        <button class="page-link" (click)="navigateToPage(page)">
+          {{ page }}
+        </button>
       </li>
 
       <!--  <li class="page-item">

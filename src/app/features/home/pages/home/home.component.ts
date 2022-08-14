@@ -37,10 +37,15 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
   }
   private createPaginationArray(totalPages: number): Array<number> {
-    let array = [];
+    let array: Array<number> = [];
     for (let i = 0; i < totalPages; i++) {
-      array.push(i + 1);
+      array = [...array, i + 1];
     }
     return array;
+  }
+
+  navigateToPage(page: number): void {
+    this.page = page;
+    this.getAllUsers();
   }
 }

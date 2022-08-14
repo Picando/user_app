@@ -1,0 +1,54 @@
+<div class="row mt-md-5">
+  <div class="col-12 col-md-6">
+    <div
+      class="details__img img__column d-flex align-items-center justify-content-center mt-3 pb-4 pb-md-0 pe-md-4"
+    >
+      <img
+        [src]="user.image"
+        alt="User: {{ user.first_name }} {{ user.last_name }}"
+      />
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6 mt-4 mt-md-0">
+    <h2 class="text-center text-md-start">
+      {{ user.first_name }}
+    </h2>
+    <h2 class="text-center text-md-start">
+      {{ user.last_name }}
+    </h2>
+
+    <div class="mt-4">
+      <p>
+        <span class="font-bold">Nombre de usuario:</span>
+        {{ user.username }}
+      </p>
+      <p><span class="font-bold">Email:</span> {{ user.email }}</p>
+    </div>
+
+    <div class="mt-5">
+      <div class="d-flex align-items-center justify-content-center">
+        <button
+          class="btn btn-outline-secondary d-flex flex-column align-items-center"
+          (click)="deleteUser(user.id)"
+        >
+          Eliminar
+        </button>
+
+        <a
+          [routerLink]="['/updateuser', user.id]"
+          class="btn btn-outline-secondary d-flex flex-column align-items-center"
+        >
+          Actualizar
+        </a>
+
+        <a
+          [routerLink]="['/']"
+          class="btn btn-outline-secondary d-flex flex-column align-items-center"
+        >
+          Volver al listado
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

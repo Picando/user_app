@@ -1,0 +1,21 @@
+.details__img img {
+  border-radius: 50%;
+
+  height: 20rem;
+  width: 20rem;
+}
+
+.img__column {
+  border-bottom: 1px solid black;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+@media screen and (min-width: 48rem) {
+  .img__column {
+    border-bottom: 0px;
+    border-right: 1px solid black;
+  }
+}

@@ -4,9 +4,7 @@
     <input
       type="text"
       [class]="
-        getFirstName?.invalid && (getFirstName?.touched || getFirstName?.dirty)
-          ? 'form-control is-invalid'
-          : 'form-control'
+        isInvalidFirstName() ? 'form-control is-invalid' : 'form-control'
       "
       id="User_name"
       placeholder="Jhon"
@@ -18,11 +16,7 @@
     <label for="User_Lastname" class="form-label">Apellido usuario</label>
     <input
       type="text"
-      [class]="
-        getLastName?.invalid && (getLastName?.touched || getLastName?.dirty)
-          ? 'form-control is-invalid'
-          : 'form-control'
-      "
+      [class]="isInvalidLastName() ? 'form-control is-invalid' : 'form-control'"
       id="User_Lastname"
       placeholder="Doe"
       formControlName="last_name"
@@ -33,11 +27,7 @@
     <label for="User_name" class="form-label">Email Usuario</label>
     <input
       type="email"
-      [class]="
-        getEmail?.invalid && (getEmail?.touched || getEmail?.dirty)
-          ? 'form-control is-invalid'
-          : 'form-control'
-      "
+      [class]="isInvalidEmail ? 'form-control is-invalid' : 'form-control'"
       id="email"
       placeholder="jhon@example.com"
       formControlName="email"

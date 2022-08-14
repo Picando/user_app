@@ -5,15 +5,8 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 
-
 @NgModule({
-  declarations: [
-    HomeComponent,
-    UserCardComponent
-  ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule
-  ]
+  declarations: [HomeComponent, UserCardComponent],
+  imports: [CommonModule, HomeRoutingModule],
 })
-export class HomeModule { }
+export class HomeModule {}
