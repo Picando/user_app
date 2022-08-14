@@ -41,7 +41,7 @@ export class AddUserComponent implements OnInit {
         );
     }
 
-    /* Form getters */
+    // Form getters
 
     get getFirstName() {
         return this.userForm.get('first_name');
@@ -51,5 +51,28 @@ export class AddUserComponent implements OnInit {
     }
     get getEmail() {
         return this.userForm.get('email');
+    }
+
+    // Input validations
+
+    isInvalidFirstName(): boolean {
+        return !!(
+            this.getFirstName?.invalid &&
+            (this.getFirstName?.touched || this.getFirstName?.dirty)
+        );
+    }
+
+    isInvalidLastName(): boolean {
+        return !!(
+            this.getLastName?.invalid &&
+            (this.getLastName?.touched || this.getLastName?.dirty)
+        );
+    }
+
+    isInvalidEmail(): boolean {
+        return !!(
+            this.getEmail?.invalid &&
+            (this.getEmail?.touched || this.getEmail?.dirty)
+        );
     }
 }

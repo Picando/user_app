@@ -16,11 +16,18 @@ export class UsersService {
     constructor(private _http: HttpClient) {}
 
     /**
-    * Obtiene todos los usuarios de la base de datos.
-    */
-    getAll(): Observable<GetAllUsersAPIResponse> {
+     * Obtiene la informacion del usuario con el id especificado.
+     */
+    get(id: number): Observable<User> {
+        return this._http.get<User>(`${environment.apiUrl}/users/${id}`);
+    }
+
+    /**
+     * Obtiene todos los usuarios de la base de datos.
+     */
+    getAll(page: number): Observable<GetAllUsersAPIResponse> {
         return this._http.get<GetAllUsersAPIResponse>(
-            `${environment.apiUrl}/users`
+            `${environment.apiUrl}/users?page=${page}`
         );
     }
 
@@ -29,5 +36,22 @@ export class UsersService {
      */
     create(payload: CreateUserPayload): Observable<User> {
         return this._http.post<User>(`${environment.apiUrl}/users`, payload);
+    }
+
+    /**
+     * Actualiza el usuario que corresponda con el Id especificado.
+     */
+    update(userId: number, payload: User): Observable<User> {
+        return this._http.put<User>(
+            `${environment.apiUrl}/users/${userId}`,
+            payload
+        );
+    }
+
+    /**
+     * Elimina un usuario en la base de datos.
+     */
+    delete(userId: number): Observable<User> {
+        return this._http.delete<User>(`${environment.apiUrl}/users/${userId}`);
     }
 }
