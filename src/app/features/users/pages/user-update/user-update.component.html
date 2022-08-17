@@ -28,7 +28,7 @@
     <label for="User_name" class="form-label">Email Usuario</label>
     <input
       type="email"
-      [class]="isInvalidEmail ? 'form-control is-invalid' : 'form-control'"
+      [class]="isInvalidEmail() ? 'form-control is-invalid' : 'form-control'"
       id="email"
       placeholder="jhon@example.com"
       formControlName="email"

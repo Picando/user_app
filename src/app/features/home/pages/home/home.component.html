@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col" *ngFor="let user of userList">
+  <div class="col-12 col-lg-4" *ngFor="let user of userList">
     <user-card [user]="user"></user-card>
   </div>
 </div>
@@ -17,12 +17,6 @@
           {{ page }}
         </button>
       </li>
-
-      <!--  <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li -->>
     </ul>
   </nav>
 </div>

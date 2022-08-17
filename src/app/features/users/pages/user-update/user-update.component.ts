@@ -1,17 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UpdatePayload, User } from 'src/app/interfaces/users.interfaces';
 import { UsersService } from 'src/app/services/users.service';
+import { DEFAULT_USER } from 'src/app/shared/Utils/global.constants';
+import {
+  isValidNumber,
+  showInvalidIdMessage,
+} from 'src/app/shared/Utils/global.utils';
 import _swal from 'sweetalert2';
-
-const DEFAULT_USER: User = {
-  id: 0,
-  first_name: 'Cristina',
-  last_name: 'Galan',
-  username: 'cristinag',
-  email: 'cristina@test.com',
-  image: 'https://i.pravatar.cc/500?u=debora.bandaalcala@peticiones.online',
-};
 
 @Component({
   selector: 'user-update',
@@ -23,22 +20,43 @@ export class UserUpdateComponent implements OnInit {
 
   isLoading: boolean = false;
   userForm: FormGroup = this._fb.group({
-    first_name: ['', [Validators.required]],
-    last_name: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email]],
+    first_name: [''],
+    last_name: [''],
+    email: [''],
   });
 
-  constructor(private _fb: FormBuilder, private _userservice: UsersService) {}
+  constructor(
+    private _fb: FormBuilder,
+    private _userService: UsersService,
+    private _activatedRoute: ActivatedRoute,
+    private _router: Router
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._activatedRoute.params.subscribe((x) => {
+      if (isValidNumber(x['id'])) {
+        this._userService.get(x['id']).subscribe((u: User) => {
+          this.user = u;
+          const formValue = {
+            first_name: u.first_name,
+            last_name: u.last_name,
+            email: u.email,
+          };
+          this.userForm.setValue(formValue);
+        });
+      } else {
+        showInvalidIdMessage();
+      }
+    });
+  }
 
   onSubmit(): void {
     this.isLoading = true;
     console.log({ values: this.userForm.value });
-    const payload: UpdatePayload = this.userForm.value;
-    this._userservice.user(payload).subscribe(
-      (res: any) => {
-        this.userForm.reset();
+    const payload = this.userForm.value;
+    this._userService.update(this.user.id, payload).subscribe(
+      () => {
+        this._router.navigate(['/']);
         this.isLoading = false;
       },
       () => {},
