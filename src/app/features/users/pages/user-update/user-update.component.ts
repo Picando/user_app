@@ -1,7 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UpdatePayload } from 'src/app/interfaces/users.interfaces';
+import { UpdatePayload, User } from 'src/app/interfaces/users.interfaces';
 import { UsersService } from 'src/app/services/users.service';
+import _swal from 'sweetalert2';
+
+const DEFAULT_USER: User = {
+  id: 0,
+  first_name: 'Cristina',
+  last_name: 'Galan',
+  username: 'cristinag',
+  email: 'cristina@test.com',
+  image: 'https://i.pravatar.cc/500?u=debora.bandaalcala@peticiones.online',
+};
 
 @Component({
   selector: 'user-update',
@@ -9,6 +19,8 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./user-update.component.css'],
 })
 export class UserUpdateComponent implements OnInit {
+  user: User = DEFAULT_USER;
+
   isLoading: boolean = false;
   userForm: FormGroup = this._fb.group({
     first_name: ['', [Validators.required]],
@@ -66,5 +78,8 @@ export class UserUpdateComponent implements OnInit {
       this.getEmail?.invalid &&
       (this.getEmail?.touched || this.getEmail?.dirty)
     );
+  }
+  private ShowUpdateMessage(): void {
+    _swal.fire('Actualizado', 'Usuario actualizado correctamente', 'success');
   }
 }
